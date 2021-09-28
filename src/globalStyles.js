@@ -4,7 +4,9 @@ const globalStyles = globalCss({
   '*, *::before, *::after': {
     margin: '0',
     padding: '0',
-    font: "normal 20px OpenDyslexicAlta-Regular",
+    fontFamily: "'OpenDyslexicAlta-Regular', sans-serif",
+    fontSize: '20px',
+    lineHeight: '24px',
     color: '$text'
   },
 
@@ -17,6 +19,8 @@ const globalStyles = globalCss({
   },
 
   main: {
+    maxWidth: '768px',
+    margin: '5rem auto 1rem',
     display: 'flex',
     flexFlow: 'column nowrap',
     justifyContent: 'center',
@@ -24,7 +28,11 @@ const globalStyles = globalCss({
   },
 
   h1: {
-    font: '100px Karate, sans-serif'
+    font: '2rem Karate, sans-serif'
+  },
+
+  p: {
+    marginBottom: '1.2rem'
   }
 });
 

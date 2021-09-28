@@ -12,13 +12,16 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      background: '#eee',
-      text: '#333',
-      gray400: 'gainsboro',
-      gray500: 'lightgray',
+      background: '#e0f1f1',
+      text: '#333333',
+      accent: '#388D90',
+      highlight: '#ffffff'
     },
   },
   media: {
     bp1: '(min-width: 768px)',
+  },
+  shadows: {
+    box: '0 0.5rem 1rem $accent'
   }
 });
