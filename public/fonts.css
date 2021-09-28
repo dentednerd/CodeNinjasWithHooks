@@ -1,0 +1,9 @@
+@font-face {
+  font-family: Karate;
+  src: url(Karate.ttf);
+}
+
+@font-face {
+  font-family: OpenDyslexicAlta-Regular;
+  src: url(OpenDyslexicAlta-Regular.otf) format("opentype");
+}
