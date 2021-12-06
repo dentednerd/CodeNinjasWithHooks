@@ -1,38 +1,34 @@
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
-  Redirect
+  Navigate
 } from 'react-router-dom';
 import globalStyles from './globalStyles';
+import UserProvider from './context/user';
 
 import Nav from './organisms/Nav';
 import Home from './pages/Home';
+import Level from './pages/Level';
 
 function App() {
   globalStyles();
 
   return (
-    <Router>
-      <Nav />
-      <main>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/levels/:level">
-            <p>Level</p>
-          </Route>
-          <Route path="/credits">
-            <p>Credits</p>
-          </Route>
-          <Route path="/404">
-            <p>not found</p>
-          </Route>
-          <Redirect to="/404" />
-        </Switch>
-      </main>
-    </Router>
+    <UserProvider>
+      <Router>
+        <Nav />
+        <main>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/levels/:level" element={<Level />} />
+            <Route path="/credits" element={<p>Credits</p>} />
+            <Route path="/404" element={<p>not found</p>} />
+            <Route render={() => <Navigate to="/404" replace />} />
+          </Routes>
+        </main>
+      </Router>
+    </UserProvider>
   );
 }
 

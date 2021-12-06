@@ -1,6 +1,6 @@
 import { styled } from '../../stitches.config';
 
-export default function Button({ onClick, text}) {
+export default function Button({ onClick, children }) {
   const StyledButton = styled('button', {
     backgroundColor: '$accent',
     color: '$highlight',
@@ -18,7 +18,7 @@ export default function Button({ onClick, text}) {
 
   return (
     <StyledButton onClick={onClick}>
-      {text}
+      {children}
     </StyledButton>
   );
 }

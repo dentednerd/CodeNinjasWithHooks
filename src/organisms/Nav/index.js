@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from '../../stitches.config';
-
+import { GetUser } from '../../context/user';
 import config from '../../config';
-
-import Button from '../../atoms/Button';
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const user = GetUser();
 
   const StyledNav = styled('nav', {
     position: 'fixed',
@@ -36,10 +36,35 @@ export default function Nav() {
     }
   });
 
+  const User = styled('section', {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    alignItems: 'center',
+    gap: '1rem'
+  });
+
+  const Avatar = styled('section', {
+    backgroundImage: `url(${user.avatar})`,
+    backgroundSize: 'cover',
+    height: '3rem',
+    width: '3rem',
+    borderRadius: '50%',
+    boxShadow: '0 0 0.5rem gray',
+
+    '&:hover': {
+      cursor: 'pointer'
+    }
+  });
+
   return (
     <StyledNav>
       <h1>Code Ninjas</h1>
-      <Button onClick={() => setIsMenuOpen(!isMenuOpen)} text="Levels" />
+
+      <User>
+        {user.username}
+        <Avatar onClick={() => setIsMenuOpen(!isMenuOpen)} />
+      </User>
+
       {isMenuOpen && (
         <ul>
           {config.levels.map((level, i) => (

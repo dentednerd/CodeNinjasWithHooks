@@ -15,7 +15,9 @@ export const {
       background: '#e0f1f1',
       text: '#333333',
       accent: '#388D90',
-      highlight: '#ffffff'
+      highlight: '#ffffff',
+      sensei: '#B9BA57',
+      senseilight: '#E0E18C'
     },
   },
   media: {

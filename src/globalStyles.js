@@ -19,21 +19,33 @@ const globalStyles = globalCss({
   },
 
   main: {
-    maxWidth: '768px',
-    margin: '5rem auto 1rem',
-    display: 'flex',
-    flexFlow: 'column nowrap',
-    justifyContent: 'center',
-    alignItems: 'center'
+    minWidth: '600px',
+    maxWidth: '600px',
+    margin: '5rem auto 1rem'
   },
 
   h1: {
-    font: '2rem Karate, sans-serif'
+    font: '2rem "Karate", sans-serif'
+  },
+
+  h2: {
+    font: '1.5rem "Reggae One", sans-serif'
   },
 
   p: {
     marginBottom: '1.2rem'
-  }
+  },
+
+  code: {
+    display: 'block',
+    textAlign: 'left',
+    backgroundColor: '$text',
+    color: '$highlight',
+    marginBottom: '1rem',
+    borderRadius: '1rem',
+    padding: '1rem',
+    font: '1rem "Jetbrains Mono", monospace'
+  },
 });
 
 
