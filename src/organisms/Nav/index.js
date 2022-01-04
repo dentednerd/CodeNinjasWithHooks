@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from '../../stitches.config';
 import { GetUser } from '../../context/user';
+import Button from '../../atoms/Button';
+import Avatar from '../../atoms/Avatar';
 import config from '../../config';
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const user = GetUser();
+  const { user, setUser } = GetUser();
 
   const StyledNav = styled('nav', {
     position: 'fixed',
@@ -18,7 +19,7 @@ export default function Nav() {
     flexFlow: 'row nowrap',
     justifyContent: 'space-between',
     alignItems: 'center',
-    boxShadow: '0 0.25rem 0.5rem $colors$accent',
+    boxShadow: '0 0.25rem 0.5rem $colors$text',
     padding: '0 1rem',
     backgroundColor: '$highlight',
     zIndex: '3',
@@ -32,7 +33,16 @@ export default function Nav() {
       border: 'solid 3px $colors$text',
       borderRadius: '0.5rem',
       listStyleType: 'none',
-      padding: '1rem'
+      padding: '1rem',
+
+      li: {
+        marginBottom: '1rem',
+
+        '&:last-of-type': {
+          marginBottom: '0'
+        }
+      }
+
     }
   });
 
@@ -40,40 +50,52 @@ export default function Nav() {
     display: 'flex',
     flexFlow: 'row nowrap',
     alignItems: 'center',
-    gap: '1rem'
-  });
+    gap: '1rem',
 
-  const Avatar = styled('section', {
-    backgroundImage: `url(${user.avatar})`,
-    backgroundSize: 'cover',
-    height: '3rem',
-    width: '3rem',
-    borderRadius: '50%',
-    boxShadow: '0 0 0.5rem gray',
+    section: {
+      position: 'relative',
 
-    '&:hover': {
-      cursor: 'pointer'
-    }
+      'img.ninja': {
+        position: 'absolute',
+        bottom: '0.25rem',
+        left: '-0.25rem',
+        maxHeight: '2rem',
+      }
+    },
   });
 
   return (
     <StyledNav>
-      <h1>Code Ninjas</h1>
+      <Link to="/">
+        <h1>Code Ninjas</h1>
+      </Link>
 
-      <User>
-        {user.username}
-        <Avatar onClick={() => setIsMenuOpen(!isMenuOpen)} />
-      </User>
+      {user && (
+        <User>
+          {user.username}
+          <Avatar
+            user={user}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          />
+        </User>
+      )}
 
       {isMenuOpen && (
         <ul>
-          {config.levels.map((level, i) => (
+          {config.slice(0, user.level + 1).map((level, i) => (
             <li key={level.levelName}>
               <Link to={`/levels/${i}`}>
                 {level.levelName}
               </Link>
             </li>
           ))}
+          <li style={{ textAlign: 'center' }}>
+            <Button
+              pad
+              onClick={() => setUser('')}>
+              Log out
+            </Button>
+          </li>
         </ul>
       )}
     </StyledNav>

@@ -1,10 +1,9 @@
 import { styled } from '../../stitches.config';
 
-export default function Button({ onClick, children }) {
+export default function Button({ color, pad, onClick, children }) {
   const StyledButton = styled('button', {
-    backgroundColor: '$accent',
-    color: '$highlight',
-    padding: '0.5rem',
+    backgroundColor: color || '$highlight',
+    padding: pad ? '0.5rem' : '0',
     border: 'none',
     borderRadius: '0.5rem',
     boxShadow: '0 0 0.5rem $colors$text',

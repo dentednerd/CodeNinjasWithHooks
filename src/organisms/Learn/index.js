@@ -1,8 +1,10 @@
 import { styled } from '@stitches/react';
+import Highlight from 'react-highlight';
 import Button from '../../atoms/Button';
 import Teach from '../../molecules/Teach';
 
 export default function Learn({
+  thisLevel,
   thisQuestion,
   showAnswers,
   setShowAnswers
@@ -16,14 +18,22 @@ export default function Learn({
     }
   });
 
+  const Example = styled(Highlight, {
+    marginBottom: '1rem !important',
+  });
+
   return (
     <StyledLearn>
       <Teach thisQuestion={thisQuestion} />
-      <code className="example">
+      <Example
+        language="javascript"
+        className="language-javascript"
+      >
         {thisQuestion.example}
-      </code>
+      </Example>
       <Button
-        className="button flipper"
+        pad
+        color={thisLevel.levelColor}
         onClick={() => setShowAnswers(!showAnswers)}
       >
         Your turn!

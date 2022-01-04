@@ -15,3 +15,9 @@ export const getUserByUsername = async(username) => {
   const { data: { user } } = await api.get(url);
   return user;
 }
+
+export const patchUser = async (username) => {
+  const url = `/users/${username}`;
+  const { data: { user } } = await api.patch(url);
+  return user;
+}

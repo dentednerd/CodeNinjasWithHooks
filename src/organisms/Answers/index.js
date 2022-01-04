@@ -1,8 +1,10 @@
 import { styled } from '@stitches/react';
+import Highlight from 'react-highlight';
 import Button from '../../atoms/Button';
 import Sensei from '../../molecules/Sensei';
 
 export default function Answers({
+  thisLevel,
   thisQuestion,
   showAnswers,
   setShowAnswers,
@@ -28,22 +30,12 @@ export default function Answers({
     gridTemplateRows: 'repeat(2, 1fr)',
     gap: '1rem',
     textAlign: 'center',
-
-    code: {
-      whiteSpace: 'pre-wrap',
-      maxWidth: '100%',
-
-      '&:hover': {
-        cursor: 'pointer'
-      },
-    }
-
-
-
+    marginBottom: '1rem',
   });
 
   return (
     <StyledAnswers>
+
       <YourTurn>
         <Sensei
           title={thisQuestion.question}
@@ -52,24 +44,33 @@ export default function Answers({
       </YourTurn>
 
       <AnswersGrid>
-        {thisQuestion.answers.map((answer) => {
-          return (
-            <code
-              key={answer}
-              onClick={() => {
-                answer === thisQuestion.correct && handleCorrectAnswer()
-              }}
-            >
-              {answer}
-            </code>
-          );
-        })}
+        {thisQuestion.answers
+          .sort(() => Math.random() - 0.5)
+          .map((answer) => {
+            return (
+              <Button
+                key={answer}
+                onClick={() => {
+                  answer === thisQuestion.correct && handleCorrectAnswer()
+                }}
+              >
+                <Highlight
+                  language="javascript"
+                >
+                  {answer}
+                </Highlight>
+              </Button>
+            );
+          }
+        )}
       </AnswersGrid>
 
       <Button
+        color={thisLevel.levelColor}
+        pad
         onClick={() => setShowAnswers(!showAnswers)}
       >
-        What did Sensei say?
+        <span>What did Sensei say?</span>
       </Button>
 
     </StyledAnswers>

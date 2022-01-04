@@ -7,7 +7,8 @@ const globalStyles = globalCss({
     fontFamily: "'OpenDyslexicAlta-Regular', sans-serif",
     fontSize: '20px',
     lineHeight: '24px',
-    color: '$text'
+    color: '$text',
+    tabSize: '2rem',
   },
 
   body: {
@@ -19,9 +20,9 @@ const globalStyles = globalCss({
   },
 
   main: {
-    minWidth: '600px',
-    maxWidth: '600px',
-    margin: '5rem auto 1rem'
+    minWidth: '768px',
+    maxWidth: '768px',
+    margin: '5rem auto 1rem',
   },
 
   h1: {
@@ -36,15 +37,23 @@ const globalStyles = globalCss({
     marginBottom: '1.2rem'
   },
 
-  code: {
+  'button pre': {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    alignItems: 'center',
+  },
+
+  'code.hljs': {
     display: 'block',
     textAlign: 'left',
-    backgroundColor: '$text',
-    color: '$highlight',
-    marginBottom: '1rem',
-    borderRadius: '1rem',
+    borderRadius: '0.5rem',
     padding: '1rem',
-    font: '1rem "Jetbrains Mono", monospace'
+    font: '1rem "Jetbrains Mono", monospace',
+    marginBottom: '0',
+
+    span: {
+      font: '1rem "Jetbrains Mono", monospace',
+    }
   },
 });
 
